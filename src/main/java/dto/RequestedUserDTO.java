@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class RequestedUserDTO {
 
   private String email;
   private String firstName;
