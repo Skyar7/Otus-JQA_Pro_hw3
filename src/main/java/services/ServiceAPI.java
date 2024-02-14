@@ -7,8 +7,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
-import java.util.Map;
-
 public class ServiceAPI {
   private static final String BASE_URL = "https://petstore.swagger.io/v2";
   private static final String USER_PATH = "/user";
