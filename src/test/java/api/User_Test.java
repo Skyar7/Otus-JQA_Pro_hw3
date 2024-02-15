@@ -10,8 +10,10 @@ import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import services.ServiceAPI;
 
-public class User_Test extends BaseTestsUtils {
+public class User_Test {
+  ServiceAPI userApi = new ServiceAPI();
 
   @Test
   public void createAndDeleteUser() {

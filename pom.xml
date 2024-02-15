@@ -25,6 +25,8 @@
         <jackson-annotations.version>2.16.1</jackson-annotations.version>
         <jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
         <lombok.version>1.18.30</lombok.version>
+
+        <base.url>https://petstore.swagger.io/v2</base.url>
     </properties>
 
     <dependencies>
@@ -79,6 +81,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <systemProperties>
+                        <base.url>${base.url}</base.url>
                     </systemProperties>
                 </configuration>
             </plugin>
