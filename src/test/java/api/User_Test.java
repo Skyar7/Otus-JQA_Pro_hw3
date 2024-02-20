@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.lessThan;
 import dto.RequestedUserDTO;
 import dto.UserDTO;
 import dto.UserResponseDTO;
-import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
@@ -59,7 +58,6 @@ public class User_Test {
             .build();
 
     ValidatableResponse response = userApi.createUser(userDTO)
-            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/UserCreateResponseSchema.json"))
             .time(lessThan(4000l));
 
     UserResponseDTO createResponse = response.extract().body().as(UserResponseDTO.class);

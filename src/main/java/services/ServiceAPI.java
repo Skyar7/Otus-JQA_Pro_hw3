@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import dto.UserDTO;
 import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
@@ -26,6 +27,7 @@ public class ServiceAPI {
             .when()
             .post()
             .then()
+            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/UserCreateResponseSchema.json"))
             .log().all();
   }
 
