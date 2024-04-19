@@ -1,0 +1,7 @@
+*.iml
+*.log
+.idea/
+target/
+allure-results/
+jenkins/
+.git/
