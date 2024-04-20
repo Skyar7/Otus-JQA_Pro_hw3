@@ -1,4 +1,4 @@
-timeout(60) {
+timeout(15) {
     node("maven") {
         wrap([$class: 'BuildUser']) {
             currentBuild.description = """
@@ -8,9 +8,9 @@ branch: ${REFSPEC}
 
             config = readYaml text: env.YAML_CONFIG ?: null;
 
-            if(config !=null) {
-                for(param in config.entrySet()) {
-                    env.setProperty(param.getValue())
+            if (config != null) {
+                for (param in config.entrySet()) {
+                    env."${param.getKey()}" = param.getValue()
                 }
             }
         }
@@ -23,7 +23,7 @@ branch: ${REFSPEC}
         }
         stage("Run API tests") {
             sh "mkdir ./reports"
-            sh "docker run --rm --env-file -v ./reports:root/api_tests_allure-results ./.env -t api_tests:${env.getProperty('TEST_VERSION')}"
+            sh "docker run --rm --network=host --env-file ./.env -v ./reports:root/api_tests_allure-results -t localhost:5005/api_tests:${env.getProperty('TEST_VERSION')}"
         }
         stage("Publish allure results") {
             REPORT_DISABLE = Boolean.parseBoolean(env.getProperty('REPORT_DISABLE')) ?: false
